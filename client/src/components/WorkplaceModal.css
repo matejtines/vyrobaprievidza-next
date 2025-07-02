@@ -1,0 +1,132 @@
+.workplace-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.workplace-modal {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  animation: modalFadeIn 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.workplace-modal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-hover));
+}
+
+.workplace-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.workplace-modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.workplace-modal-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 20px;
+  background: var(--primary-color);
+  border-radius: 2px;
+}
+
+.workplace-modal-close {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.workplace-modal-close:hover {
+  opacity: 1;
+  background: var(--button-hover);
+  transform: rotate(90deg);
+}
+
+.workplace-modal-content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.workplace-modal-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: var(--button-bg);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border-color);
+}
+
+.workplace-modal-row:hover {
+  background: var(--button-hover);
+  transform: translateX(4px);
+  border-color: var(--primary-color);
+}
+
+.workplace-modal-label {
+  font-weight: 500;
+  color: var(--text-color);
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+}
+
+.workplace-modal-value {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

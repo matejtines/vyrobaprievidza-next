@@ -1,0 +1,122 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #e0e0e0;
+  background-color: #0f0f23;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #e0e0e0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Globálne štýly pre formové elementy */
+select, input, textarea {
+  font-family: inherit;
+}
+
+/* Štýly pre všetky select elementy */
+select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+select option {
+  background: #1a1a2e;
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+}
+
+select option:hover {
+  background: #667eea;
+}
+
+select option:checked {
+  background: #667eea;
+  color: white;
+}
+
+/* Štýly pre všetky input elementy */
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"] {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="number"]:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Štýly pre textarea */
+textarea {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+} 

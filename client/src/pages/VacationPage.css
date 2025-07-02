@@ -1,0 +1,1359 @@
+.vacation-page {
+  padding: 20px;
+  color: #e0e0e0;
+  max-width: 100%;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.vacation-container {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.vacation-form {
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: end;
+}
+
+.vacation-form-group {
+  margin-bottom: 0;
+}
+
+.vacation-form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.vacation-form-group select,
+.vacation-form-group input,
+.vacation-date-picker {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #475569;
+  border-radius: 4px;
+  font-size: 14px;
+  background: #0f172a;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.vacation-add-button {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  height: 37px;
+}
+
+.vacation-add-button:hover {
+  background: #1976D2;
+}
+
+.vacation-add-button:disabled {
+  background: #0f172a;
+  cursor: not-allowed;
+}
+
+/* Kalendárový pohľad */
+.vacation-calendar-container {
+  background: #0f172a;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Štýl pre hlavný scrollbar stránky */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(33, 150, 243, 0.3);
+  border-radius: 4px;
+  border: 2px solid #0f172a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(33, 150, 243, 0.5);
+}
+
+/* Pre Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(33, 150, 243, 0.3) #0f172a;
+}
+
+.vacation-calendar-header {
+  background: #0f172a;
+  z-index: 10;
+  border-radius: 8px 8px 0 0;
+  border-bottom: 1px solid #475569;
+  position: sticky;
+  top: 0;
+}
+
+.vacation-month-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #0f172a;
+  border-radius: 16px 16px 0 0;
+  border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-month-navigation-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.vacation-month-navigation button {
+  background: #1e293b;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  color: #e0e0e0;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.vacation-month-navigation button:hover {
+  background: #334155;
+  border-color: #2196F3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.vacation-month-navigation h2 {
+  margin: 0;
+  text-transform: capitalize;
+  min-width: 200px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.vacation-days-header {
+  display: grid;
+  grid-template-columns: 150px repeat(31, 1fr);
+  background: #0f172a;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  border-radius: 0 0 8px 8px;
+  border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-employee-column {
+  padding: 8px;
+  font-weight: 500;
+  border-right: 1px solid rgba(33, 150, 243, 0.3);
+  background: #0f172a;
+  position: sticky;
+  left: 0;
+  z-index: 8;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 1px;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.vacation-day-column {
+  padding: 4px 2px;
+  text-align: center;
+  border-right: 1px solid rgba(33, 150, 243, 0.2);
+  min-width: 25px;
+}
+
+.vacation-day-name {
+  font-size: 11px;
+  color: #90caf9;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.vacation-day-number {
+  font-size: 12px;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.vacation-calendar-body {
+  display: grid;
+  grid-template-rows: auto;
+  position: relative;
+  z-index: 1;
+  background: #0f172a;
+}
+
+.vacation-calendar-row {
+  display: grid;
+  grid-template-columns: 150px repeat(31, 1fr);
+  border-bottom: 1px solid rgba(33, 150, 243, 0.3);
+  padding: 2px 0;
+  transition: background-color 0.3s ease;
+  margin: 0;
+}
+
+.vacation-calendar-row:hover {
+  background: rgba(33, 150, 243, 0.05);
+}
+
+.vacation-employee-name {
+  padding: 8px 12px;
+  border-right: 1px solid rgba(33, 150, 243, 0.3);
+  background: #0f172a;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin: 1px;
+  border: none;
+}
+
+.vacation-employee-name:hover {
+  background: #1e293b;
+  transform: translateX(4px);
+  box-shadow: 4px 0 12px rgba(33, 150, 243, 0.3);
+  border: 1px solid rgba(33, 150, 243, 0.4);
+}
+
+.vacation-calendar-cell {
+  border-right: 1px solid rgba(33, 150, 243, 0.3);
+  padding: 2px;
+  min-height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  margin: 1px;
+  border: none;
+}
+
+.vacation-calendar-cell:hover {
+  background: rgba(33, 150, 243, 0.1);
+  transform: scale(1.05);
+  border: 1px solid rgba(33, 150, 243, 0.4);
+}
+
+.vacation-calendar-cell.selecting {
+  background: rgba(33, 150, 243, 0.15);
+  position: relative;
+  border: 1px dashed rgba(33, 150, 243, 0.5);
+}
+
+/* Štýly pre absencie */
+.vacation-absence-dovolenka {
+  background: rgba(33, 150, 243, 0.15);
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.vacation-absence-dovolenka:hover {
+  background: rgba(33, 150, 243, 0.25);
+  border-color: rgba(33, 150, 243, 0.5);
+}
+
+.vacation-absence-pn, .vacation-absence-§ {
+  background: rgba(255, 193, 7, 0.15);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+}
+
+.vacation-absence-pn:hover, .vacation-absence-§:hover {
+  background: rgba(255, 193, 7, 0.25);
+  border-color: rgba(255, 193, 7, 0.5);
+}
+
+.vacation-absence-LS {
+  background: rgba(76, 175, 80, 0.15);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.vacation-absence-LS:hover {
+  background: rgba(76, 175, 80, 0.25);
+  border-color: rgba(76, 175, 80, 0.5);
+}
+
+.vacation-absence-neratat {
+  background: rgba(239, 83, 80, 0.15);
+  border: 1px solid rgba(239, 83, 80, 0.3);
+}
+
+.vacation-absence-neratat:hover {
+  background: rgba(239, 83, 80, 0.25);
+  border-color: rgba(239, 83, 80, 0.5);
+}
+
+.vacation-absence-indicator {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.vacation-absence-dovolenka .vacation-absence-indicator {
+  color: #90caf9;
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.vacation-absence-pn .vacation-absence-indicator,
+.vacation-absence-§ .vacation-absence-indicator {
+  color: #ffd54f;
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.vacation-absence-LS .vacation-absence-indicator {
+  color: #81c784;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.vacation-absence-neratat .vacation-absence-indicator {
+  color: #ef5350;
+  background: rgba(239, 83, 80, 0.1);
+}
+
+/* Štýly pre markery */
+.vacation-veduci-marker,
+.vacation-zoradovac-marker,
+.vacation-manipulant-marker,
+.vacation-drvic-marker {
+  font-size: 10px;
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: 6px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.vacation-veduci-marker {
+  background: rgba(33, 150, 243, 0.2);
+  color: #90caf9;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.vacation-zoradovac-marker {
+  background: rgba(33, 150, 243, 0.2);
+  color: #90caf9;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.vacation-manipulant-marker {
+  background: rgba(33, 150, 243, 0.2);
+  color: #90caf9;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.vacation-drvic-marker {
+  background: rgba(33, 150, 243, 0.2);
+  color: #90caf9;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+/* Štýly pre vyhľadávanie */
+.vacation-search-container {
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.vacation-search-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vacation-shift-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.vacation-shift-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.vacation-shift-button:hover {
+  background: var(--button-hover-bg);
+  transform: translateY(-1px);
+}
+
+.vacation-shift-button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.vacation-search-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  border-radius: 8px;
+  background: #0f172a;
+  color: #e0e0e0;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.vacation-search-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.vacation-search-input::placeholder {
+  color: #90caf9;
+}
+
+/* Štýly pre tlačidlá absencií */
+.vacation-absence-type-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  padding: 0 16px;
+}
+
+.vacation-absence-button {
+  flex: 1;
+  padding: 16px 24px;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  border-radius: 12px;
+  background: #1e293b;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  max-width: 250px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.vacation-absence-button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.3);
+  border-color: rgba(33, 150, 243, 0.4);
+}
+
+.vacation-absence-button.active {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: white;
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.4);
+}
+
+.vacation-absence-button .vacation-icon {
+  font-size: 1.4rem;
+  transition: transform 0.3s ease;
+}
+
+.vacation-absence-button:hover .vacation-icon {
+  transform: scale(1.1);
+}
+
+/* Animácie */
+@keyframes fadeIn {
+  from { 
+    opacity: 0;
+    visibility: hidden;
+  }
+  to { 
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responzívne štýly */
+@media screen and (max-width: 1400px) {
+  .vacation-days-header,
+  .vacation-calendar-row {
+    grid-template-columns: 120px repeat(31, 1fr);
+  }
+
+  .vacation-employee-name,
+  .vacation-employee-column {
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .vacation-days-header,
+  .vacation-calendar-row {
+    grid-template-columns: 100px repeat(31, 1fr);
+  }
+
+  .vacation-employee-name,
+  .vacation-employee-column {
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .vacation-day-name {
+    font-size: 10px;
+  }
+
+  .vacation-day-number {
+    font-size: 12px;
+  }
+
+  .vacation-absence-indicator {
+    font-size: 10px;
+  }
+}
+
+/* Štýly pre potvrdenie pridania absencie */
+.vacation-confirmation-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.vacation-confirmation-modal {
+  background: #0f172a;
+  border-radius: 12px;
+  padding: 24px;
+  min-width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+.vacation-confirmation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+}
+
+.vacation-confirmation-close {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.7;
+  transition: all 0.2s;
+}
+
+.vacation-confirmation-close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.vacation-confirmation-content {
+  margin-bottom: 24px;
+}
+
+.vacation-confirmation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vacation-confirmation-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+
+.vacation-confirmation-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #90caf9;
+}
+
+.vacation-confirmation-type {
+  margin-top: 16px;
+  padding: 12px;
+  background: #0f172a;
+  border-radius: 8px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-note {
+  margin-top: 16px;
+}
+
+.vacation-confirmation-note label {
+  display: block;
+  margin-bottom: 8px;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.vacation-confirmation-note-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  border-radius: 8px;
+  background: #0f172a;
+  color: #e0e0e0;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+  transition: all 0.3s ease;
+}
+
+.vacation-confirmation-note-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-note-input::placeholder {
+  color: #90caf9;
+  opacity: 0.7;
+}
+
+.vacation-confirmation-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vacation-confirmation-button.confirm {
+  background: #2196F3;
+  color: white;
+}
+
+.vacation-confirmation-button.confirm:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.vacation-confirmation-button.cancel {
+  background: #1e293b;
+  color: #e0e0e0;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-button.cancel:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vacation-cell.nerátať, .vacation-type.nerátať, .vacation-info.nerátať {
+  background: rgba(33, 150, 243, 0.15) !important;
+  color: #90caf9 !important;
+  border: 1px solid rgba(33, 150, 243, 0.3) !important;
+}
+
+.vacation-button.active.nerátať {
+  background: #2196F3;
+  color: #fff;
+  border: 1px solid #2196F3;
+}
+
+.vacation-calendar-cell.vacation-LS {
+  background-color: rgba(33, 150, 243, 0.15) !important;
+  border: 1px dashed rgba(33, 150, 243, 0.5) !important;
+}
+
+.vacation-absence-indicator {
+  font-weight: bold;
+}
+
+.vacation-LS .vacation-absence-indicator {
+  color: #90caf9 !important;
+}
+
+.vacation-button.active[data-type="LS"] {
+  background-color: #2196F3;
+  color: white;
+  border-color: #2196F3;
+}
+
+.vacation-button[data-type="LS"] {
+  color: #90caf9;
+  border-color: rgba(33, 150, 243, 0.3);
+}
+
+.vacation-button[data-type="LS"]:hover {
+  background-color: rgba(33, 150, 243, 0.1);
+}
+
+.vacation-button[data-type="LS"] .icon {
+  color: #90caf9;
+}
+
+.vacation-button.active[data-type="LS"] .icon {
+  color: white;
+}
+
+.vacation-type-button.ls-button {
+  background: #2196F3;
+  color: white;
+  border: 1px solid #2196F3;
+}
+
+.vacation-type-button.ls-button:hover {
+  background: #1976D2;
+  border-color: #1976D2;
+}
+
+.vacation-confirmation-type-selection {
+  margin-top: 16px;
+  padding: 16px;
+  background: #0f172a;
+  border-radius: 8px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-confirmation-type-selection p {
+  margin: 0 0 12px 0;
+  color: #e0e0e0;
+  font-size: 1rem;
+}
+
+.vacation-confirmation-type-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.vacation-confirmation-type-button {
+  flex: 1;
+  padding: 12px 24px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+  border-radius: 6px;
+  background: #1e293b;
+  color: #e0e0e0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  max-width: 120px;
+}
+
+.vacation-confirmation-type-button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.vacation-confirmation-type-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(33, 150, 243, 0.1);
+}
+
+.vacation-context-menu {
+  position: fixed;
+  background: #0f172a;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  border-radius: 8px;
+  padding: 8px 0;
+  min-width: 150px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.vacation-context-menu-item {
+  padding: 8px 16px;
+  color: #e0e0e0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.vacation-context-menu-item:hover {
+  background: #1e293b;
+  color: #90caf9;
+}
+
+.vacation-context-menu-item.delete {
+  color: #ef5350;
+}
+
+.vacation-context-menu-item.delete:hover {
+  background: rgba(239, 83, 80, 0.1);
+  color: #ef5350;
+}
+
+.vacation-absence-dovolenka,
+.vacation-absence-pn,
+.vacation-absence-§,
+.vacation-absence-LS,
+.vacation-absence-neratat {
+  position: relative;
+  cursor: pointer;
+}
+
+.vacation-absence-dovolenka:hover,
+.vacation-absence-pn:hover,
+.vacation-absence-§:hover,
+.vacation-absence-LS:hover,
+.vacation-absence-neratat:hover {
+  background: rgba(33, 150, 243, 0.2);
+  border-color: rgba(33, 150, 243, 0.5);
+}
+
+.vacation-absence-indicator {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background: rgba(33, 150, 243, 0.1);
+  user-select: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.vacation-info-modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.75) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 99999 !important;
+  backdrop-filter: blur(4px) !important;
+  animation: fadeIn 0.3s ease !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.vacation-info-modal.hidden {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.vacation-info-content {
+  background: #0f172a !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  width: 500px !important;
+  max-width: 90% !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(33, 150, 243, 0.2) !important;
+  animation: slideIn 0.3s ease !important;
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  position: relative !important;
+  z-index: 100000 !important;
+  margin: auto !important;
+}
+
+.vacation-info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(33, 150, 243, 0.2);
+  position: sticky;
+  top: 0;
+  background: #0f172a;
+  z-index: 1;
+}
+
+.vacation-info-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vacation-info-close {
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.vacation-info-close:hover {
+  background: rgba(33, 150, 243, 0.1);
+  color: #90caf9;
+  transform: scale(1.1);
+}
+
+.vacation-info-section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #1e293b;
+  border-radius: 8px;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-info-section h3 {
+  margin: 0 0 16px 0;
+  color: #90caf9;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vacation-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(33, 150, 243, 0.1);
+}
+
+.vacation-info-row:last-child {
+  border-bottom: none;
+}
+
+.vacation-info-label {
+  color: #e0e0e0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vacation-info-value {
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.vacation-info-value.dovolenka {
+  color: #90caf9;
+  background: rgba(33, 150, 243, 0.1);
+}
+
+.vacation-info-value.pn {
+  color: #ffd54f;
+  background: rgba(255, 193, 7, 0.1);
+}
+
+.vacation-info-value.ls {
+  color: #81c784;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.vacation-info-value.neratat {
+  color: #ef5350;
+  background: rgba(239, 83, 80, 0.1);
+}
+
+.vacation-info-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(33, 150, 243, 0.2);
+  position: sticky;
+  bottom: 0;
+  background: #0f172a;
+  z-index: 1;
+}
+
+.vacation-info-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.vacation-info-button.edit {
+  background: #2196F3;
+  color: white;
+}
+
+.vacation-info-button.edit:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.vacation-info-button.close {
+  background: #1e293b;
+  color: #e0e0e0;
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.vacation-info-button.close:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.2);
+}
+
+.vacation-info-icon {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.vacation-info-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #90caf9;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.vacation-info-section-title .icon {
+  font-size: 1.4rem;
+  opacity: 0.8;
+}
+
+.vacation-stats-modal-overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.vacation-stats-modal {
+  background-color: #1e293b;
+  border-radius: 8px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.vacation-stats-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vacation-stats-modal-header h2 {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 1.5rem;
+}
+
+.vacation-stats-modal-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.vacation-stats-modal-close:hover {
+  color: #e2e8f0;
+}
+
+.vacation-stats-section {
+  background-color: #0f172a;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.vacation-stats-section h3 {
+  color: #e2e8f0;
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.vacation-stats-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: #94a3b8;
+}
+
+.vacation-stats-row:last-child {
+  margin-bottom: 0;
+}
+
+.vacation-stats-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #e2e8f0;
+}
+
+.vacation-stats-edit-button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+}
+
+.vacation-stats-edit-button:hover {
+  color: #e2e8f0;
+}
+
+.vacation-stats-input {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: #e2e8f0;
+  padding: 4px 8px;
+  width: 60px;
+  margin-right: 8px;
+}
+
+.vacation-stats-save,
+.vacation-stats-cancel {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+  margin-left: 4px;
+}
+
+.vacation-stats-save:hover {
+  color: #22c55e;
+}
+
+.vacation-stats-cancel:hover {
+  color: #ef4444;
+}
+
+.vacation-stats-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vacation-stats-modal-actions button {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vacation-stats-modal-actions button:hover {
+  background-color: #334155;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.vacation-view-mode-switch {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 24px;
+  padding: 0 16px;
+}
+
+.vacation-view-mode-button {
+  flex: 1;
+  max-width: 200px;
+  padding: 12px 24px;
+  border: 1px solid rgba(33, 150, 243, 0.3);
+  border-radius: 8px;
+  background: #1e293b;
+  color: #e0e0e0;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.vacation-view-mode-button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+  border-color: rgba(33, 150, 243, 0.4);
+}
+
+.vacation-view-mode-button.active {
+  background: #2196F3;
+  border-color: #2196F3;
+  color: white;
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.vacation-view-mode-button.active:hover {
+  background: #1976D2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(33, 150, 243, 0.5);
+} 

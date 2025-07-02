@@ -1,0 +1,818 @@
+.norms-page {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+.norms-page h1 {
+  margin-bottom: 20px;
+  color: var(--text-color);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+/* Tabs styling */
+.react-tabs {
+  margin-top: 20px;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid var(--border-color);
+  margin: 0 0 20px;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.react-tabs__tab {
+  display: inline-block;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: var(--text-color);
+  opacity: 0.7;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.react-tabs__tab--selected {
+  color: var(--primary-color);
+  font-weight: 500;
+  opacity: 1;
+}
+
+.react-tabs__tab--selected::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--primary-color);
+}
+
+/* Actions bar */
+.actions-bar {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-button {
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.add-button:hover {
+  background: var(--button-hover);
+  transform: translateY(-2px);
+  border-color: var(--primary-color);
+}
+
+/* Form cards */
+.form-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.form-card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+/* Grid layouts */
+.norms-grid, .zakazky-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Card styles */
+.norma-card, .zakazka-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.norma-card:hover, .zakazka-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  border-color: var(--primary-color);
+}
+
+.norma-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.norma-card-header h3 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 18px;
+}
+
+.norma-skratka {
+  background: var(--button-bg);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+.zakazka-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.zakazka-number {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Card actions */
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.icon-button {
+  background: transparent;
+  color: var(--text-color);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+  position: relative;
+}
+
+.icon-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.icon-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.icon-button:hover::before {
+  opacity: 0.1;
+}
+
+.icon-button.edit {
+  color: var(--primary-color);
+}
+
+.icon-button.delete {
+  color: #ef4444;
+}
+
+.icon-button.save {
+  color: #22c55e;
+}
+
+.icon-button.cancel {
+  color: #ef4444;
+}
+
+/* Edit and delete buttons in table */
+.edit-button,
+.delete-button {
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  opacity: 0.6;
+  position: relative;
+}
+
+.edit-button::before,
+.delete-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.edit-button:hover,
+.delete-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.edit-button:hover::before,
+.delete-button:hover::before {
+  opacity: 0.1;
+}
+
+.edit-button {
+  color: var(--primary-color);
+}
+
+.delete-button {
+  color: #ef4444;
+}
+
+/* Ikonové tlačidlá v tabuľke */
+.norms-table .icon-button,
+.norms-table .edit-button,
+.norms-table .delete-button {
+  font-size: 16px;
+}
+
+/* Ikonové tlačidlá v kartách */
+.norma-card .icon-button,
+.zakazka-card .icon-button {
+  font-size: 18px;
+}
+
+/* Form styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.edit-input {
+  background: var(--button-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  transition: all 0.2s ease;
+}
+
+.edit-input:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.1);
+}
+
+/* Zakazka details */
+.zakazka-tag {
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.zakazka-header {
+  cursor: pointer;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.zakazka-header:hover {
+  background-color: var(--button-hover);
+}
+
+.zakazka-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.zakazka-norma {
+  color: var(--text-secondary);
+  font-size: 0.9em;
+}
+
+.zakazka-details {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease-in-out;
+  background-color: var(--card-bg);
+  border-radius: 0 0 8px 8px;
+  padding: 0;
+  margin: 0;
+}
+
+.zakazka-details.expanded {
+  max-height: 200px;
+  opacity: 1;
+  transform: translateY(0);
+  padding: 12px;
+  margin-top: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  border-top: none;
+}
+
+.zakazka-details .norma-calculations {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  padding: 8px 0;
+  background-color: var(--card-bg);
+  border-radius: 6px;
+}
+
+.zakazka-details .calculation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: var(--background-color);
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  min-width: 100px;
+  transition: transform 0.2s ease;
+}
+
+.zakazka-details .calculation:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.zakazka-details .hours {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.zakazka-details .ks {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1em;
+}
+
+.collapse-icon {
+  transition: transform 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 0.8em;
+}
+
+.collapse-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.zakazka-tag {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.zakazka-number {
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+/* Single norma view */
+.single-norma {
+  text-align: center;
+  padding: 24px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.2s ease;
+}
+
+.single-norma:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  border-color: var(--primary-color);
+}
+
+.norma-value {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+}
+
+/* Loading state */
+.loading {
+  color: #888;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .norms-grid, .zakazky-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .react-tabs__tab-list {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .react-tabs__tab {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.norms-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-norma-button,
+.add-zakazka-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+
+.add-norma-button:hover,
+.add-zakazka-button:hover {
+  opacity: 0.9;
+}
+
+.norma-form,
+.zakazka-form {
+  background-color: var(--card-bg);
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Submit button */
+.submit-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.submit-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+/* Edit buttons */
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.save-button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.cancel-button:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
+.norms-table-container {
+  overflow-x: auto;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.norms-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.norms-table th,
+.norms-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.norms-table th {
+  background-color: var(--header-bg);
+  font-weight: bold;
+}
+
+/* Nové štýly pre zákazky */
+.zakazky-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zakazka-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.zakazka-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  color: var(--text-color);
+}
+
+.zakazka-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary-color);
+}
+
+.zakazka-item input[type="number"] {
+  width: 100px;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.zakazka-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: var(--tag-bg);
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  animation: modalFadeIn 0.3s ease-out;
+  border: 1px solid var(--border-color);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+  opacity: 1;
+}
+
+.modal-body {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.modal-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.modal-button.primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.modal-button.danger {
+  background: #ef4444;
+  color: white;
+}
+
+.modal-button.secondary {
+  background: var(--button-bg);
+  color: var(--text-color);
+}
+
+.modal-button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Upravené štýly pre existujúce potvrdzovacie dialógy */
+.confirm-dialog {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.confirm-dialog p {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.confirm-dialog-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.zakazka-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 8px;
+  background-color: var(--card-bg);
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.norma-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.norma-calculations {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.norma-calculations span {
+  background-color: var(--input-bg);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+  min-width: 100px;
+  text-align: center;
+} 

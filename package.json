@@ -1,0 +1,36 @@
+{
+  "name": "zadelovanie",
+  "version": "1.0.0",
+  "description": "Fullstack aplikácia s React, Node.js a Supabase",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "nodemon src/server.ts",
+    "dev:client": "cd client && npm run dev",
+    "build": "tsc",
+    "install:all": "npm install && cd client && npm install",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.3",
+    "@types/react-datepicker": "^6.2.0",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "react-datepicker": "^8.3.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

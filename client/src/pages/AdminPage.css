@@ -1,0 +1,147 @@
+.admin-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #e0e0e0;
+}
+
+.admin-page h1 {
+  color: #e0e0e0;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.users-table {
+  background: #1a1a1a;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #333;
+  color: #e0e0e0;
+}
+
+th {
+  background-color: #2a2a2a;
+  font-weight: 600;
+  color: #e0e0e0;
+}
+
+tr:hover {
+  background-color: #2a2a2a;
+}
+
+.role-select {
+  padding: 0.5rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  min-width: 120px;
+}
+
+.role-select option {
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.save-button {
+  padding: 0.5rem 1rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
+
+.delete-button {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.delete-confirmation {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.confirm-delete {
+  padding: 0.5rem 1rem;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm-delete:hover {
+  background-color: #c82333;
+}
+
+.cancel-delete {
+  padding: 0.5rem 1rem;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-delete:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 1rem;
+  }
+
+  .users-table {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .delete-confirmation {
+    flex-direction: column;
+  }
+} 
